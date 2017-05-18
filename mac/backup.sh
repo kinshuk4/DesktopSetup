@@ -2,3 +2,4 @@
 
 mackup backup
 cp -r ~/Library/Preferences/* ~/Lyf/Syncs/Dropbox/AppsMisc/Apps4Mac/Preferences/
+cp -r ~/.ssh/* ~/Lyf/Syncs/Dropbox/AppsMisc/Apps4Mac/.ssh/
