@@ -16,6 +16,11 @@ restorePreferences .GlobalPreferences.plist "App Shortcut"
 #restorePreferences pbs.plist "Service Shortcut"
 
 ###zalando specific
+aws configure set region eu-central-1
+aws configure get region
+
+stups configure
+
 echo "Setting up the vpn"
 open ~/Lyf/Syncs/Dropbox/AppsMisc/Apps4Mac/kchandra.tblk
 
