@@ -14,3 +14,9 @@ function restorePreferences {
 #restorePreferences com.apple.dock.plist "Dock"
 restorePreferences .GlobalPreferences.plist "App Shortcut"
 #restorePreferences pbs.plist "Service Shortcut"
+
+###zalando specific
+echo "Setting up the vpn"
+open ~/Lyf/Syncs/Dropbox/AppsMisc/Apps4Mac/kchandra.tblk
+
+ssh-add -K ~/.ssh/id_rsa_kchandra_zalando
