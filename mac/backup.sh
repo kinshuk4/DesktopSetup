@@ -23,3 +23,10 @@ cd ~/lyf/syncs/Dropbox/AppsMisc/Apps4Mac/history
 cat `printf %s $HISTFILE`  > "history_$timestamp.txt"
 
 cd $currDir
+
+#checklist
+#Export Itunes Playlists
+#Export developed apps
+#Api Keys if Any
+#check no change to commit in github
+#tabs backup in firefox, opera, chrome
