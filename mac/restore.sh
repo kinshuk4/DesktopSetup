@@ -19,9 +19,19 @@ restorePreferences .GlobalPreferences.plist "App Shortcut"
 aws configure set region eu-central-1
 aws configure get region
 
-stups configure
+stups configure stups.zalan.do
+
+zmon configure
 
 echo "Setting up the vpn"
 open ~/Lyf/Syncs/Dropbox/AppsMisc/Apps4Mac/kchandra.tblk
 
 cp ~/Lyf/Syncs/Dropbox/AppsMisc/Apps4Mac/id_rsa_kchandra_zalando ~/.ssh
+
+cd ~/Lyf/Syncs/Dropbox/AppsMisc/Apps4Mac/conda_env
+for envFile in *.yml
+do
+  echo "Creatinv env from: "$envFile
+  conda env create -f $envFile
+done
+

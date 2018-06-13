@@ -20,10 +20,7 @@ not_brews=(
   tree
   trash
   vim --with-override-system-vi
-)
-brews=(
   android-platform-tools
-  awscli
   cheat
   coreutils
   dfc
@@ -32,41 +29,46 @@ brews=(
   fontconfig --universal
   fpp
   fzf
-  git
-  git-extras
-  git-lfs
   go
   hh
   htop
   httpie
   iftop
   imagemagick --with-webp
-  isyncr-desktop
   lame
   lighttpd
   lnav
+  nmap
+  node
+  readline
+  xz
+)
+brews=(
+  awscli
+  curl
+  git
+  git-extras
+  git-lfs
+  isyncr-desktop
   mackup
   maven
   mas
-  nmap
-  node
   python3
-  readline  
   sbt
   scala
   sqlite
   tunnelblick
   wget --with-iri
-  xz
 )
 
 not_casks=(
   airdroid
+  atom 
   cakebrew
   commander-one
   datagrip
   cleanmymac
-  handbrake
+  geekbench  
   istat-menus
   istat-server 
   licecap
@@ -79,6 +81,7 @@ not_casks=(
   quicklook-csv
   macdown
   microsoft-office
+  osxfuse
   plex-home-theater
   plex-media-server
   private-eye
@@ -92,36 +95,43 @@ not_casks=(
   spotify
   steam
   teleport
+  ticktick
   transmission
   transmission-remote-gui  
 )
 casks=(
   adobe-reader 
   android-studio
-  atom  
-  Caskroom/cask/cuda
-  docker
+  box-drive
+  be-focused
+  beyond-compare
+  calibre
+  clion
   dropbox
+  evernote
   firefox
-  geekbench
   google-chrome
-  google-drive
+  google-drive-file-stream
+  google-backup-and-sync
   github-desktop
   hipchat
   hosts  
   intellij-idea  
   keka 
+  kindle
   launchrocket
+  onedrive
+  postman
   opera
-  osxfuse
   pocket
   skype
   slack  
-  ticktick
+  tunnelbear
   typora
   visual-studio-code
   vlc  
   whatsapp
+  xmind
 )
 
 pips=(
@@ -133,14 +143,15 @@ pips=(
 
 not_gems=(
   bundle
-)
-
-gems=(
   fenix-cli
   gitjk
   kill-tabs
   n
   nuclide-installer
+)
+
+gems=(
+
 )
 
 not_npms=(
@@ -199,6 +210,14 @@ fonts=(
   
 )
 
+mac_apps=(
+  copyclip
+  feedlycode 
+  houseparty
+  pocket
+  spark
+)
+
 setup_npm=false
 setup_java=true
 setup_atom=false
@@ -242,6 +261,18 @@ function install {
       echo "Failed to execute: $exec"
     fi
   done
+}
+
+function mac_install {
+  for pkg in $@;
+  do
+    exec = "mas install $(mas search $pkg | head -1 | cut -f 1  -d ' ')"
+    echo "Execute: $exec"
+    if ${exec} ; then
+      echo "Installed $pkg"
+    else
+      echo "Failed to execute: $exec"
+    fi
 }
 
 if $setup_npm; then
@@ -332,14 +363,13 @@ if $setup_conda; then
   echo "Installing miniconda for python3"
   wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
   bash Miniconda3-latest-MacOSX-x86_64.sh
-
-  echo "Setting up the sdcnd environment"
-  git clone https://github.com/udacity/CarND-Term1-Starter-Kit.git
-  cd CarND-Term1-Starter-Kit
-  conda env create -f environment.yml
-  conda clean -tp
-  cd ..
-  rm -rf CarND-Term1-Starter-Kit
+  # echo "Setting up the sdcnd environment"
+  # git clone https://github.com/udacity/CarND-Term1-Starter-Kit.git
+  # cd CarND-Term1-Starter-Kit
+  # conda env create -f environment.yml
+  # conda clean -tp
+  # cd ..
+  # rm -rf CarND-Term1-Starter-Kit
   conda update --all
 fi
 
@@ -349,8 +379,12 @@ echo "zalando specific"
 echo "Trying to upgrade mac"
 mac update
 
-echo install pocket
-mas install $(mas search pocket | head -1 | cut -f 1  -d ' ')
+echo install pocket,houseparty
+
+
+echo "Mac applications"
+mac_install ${mac_apps[@]}
+
 
 prompt "Cleanup"
 brew cleanup
