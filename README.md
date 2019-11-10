@@ -3,3 +3,4 @@ Automating the boring process of setting up desktop. Currently only including ma
 
 - [Mac](./mac/)
 - [Windows]()
+- [Ubuntu]()
